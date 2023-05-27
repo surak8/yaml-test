@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  version: 1.0.4
+  title: Tykma-CIP
+  description: describe API for 'cip.
+  contact:
+    name: rik
+    email: rcousens@colt.com
+  license:
+    name: MIT
+servers:
+  - url: http://{hostname}:{port}/{prefix}/{apiVersion}
+    description: description of this server (multi)
+    variables:
+      hostname:
+        default: localhost
+        description: description of default
+      prefix:
+        default: tykma_cip
+        description: some description
+      port:
+        enum:
+          - '3045'
+          - '5288'
+          - '9998'
+          - '9999'
+        default: '3045'
+      apiVersion:
+        default:  v1
+        description: current API version.
+paths:
+  /beginMarkingSN:
+    post:
+      summary: capture beginning of serialization
+      description: process beginning of CIP serialization for the given serial-number.
+      requestBody:
+        description: request body description
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                cameraAddress:
+                  type: string
+                  default: '192_168_100_100'
+                computerName:
+                  type: string
+                  default: RCOUSENS-LT
+                isMatchingSerialNumber:
+                  type: boolean
+                  default: false
+                laserTemplate:
+                  type: string
+                  default: colt
+                serialNumber:
+                  type: string
+                  default: CR026751
+                user:
+                  type: string
+                  default: rtcousens
+      responses:
+        '200':
+          description: response-description
+
+  /endMarkingSN:
+    post:
+      summary: capture beginning of serialization
+      description: process beginning of CIP serialization for the given serial-number.
+      requestBody:
+        description: request body description
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                cameraAddress:
+                  type: string
+                  default: '192_168_100_100'
+                computerName:
+                  type: string
+                  default: RCOUSENS-LT
+                isMatchingSerialNumber:
+                  type: boolean
+                  default: false
+                laserTemplate:
+                  type: string
+                  default: colt
+                serialNumber:
+                  type: string
+                  default: CR026751
+                user:
+                  type: string
+                  default: rtcousens
+      responses:
+        '200':
+          description: response-description
+
+  /isValidSN:
+    post:
+      summary: validate the scanned serial-number.
+      description: validate scanned S/N using known business-logic.
+      requestBody:
+        description: request body description
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                cameraAddress:
+                  type: string
+                  default: '192_168_100_100'
+                computerName:
+                  type: string
+                  default: RCOUSENS-LT
+                laserTemplate:
+                  type: string
+                  default: colt
+                serialNumber:
+                  type: string
+                  default: CR026751
+                user:
+                  type: string
+                  default: rtcousens
+      responses:
+        '200':
+          description: response-description

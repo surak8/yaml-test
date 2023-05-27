@@ -1,0 +1,72 @@
+swagger: "2.0"
+info:
+  title: Sample API
+  description: API description in Markdown.
+  version: 1.0.0
+host: localhost:5288
+basePath: /v1
+
+schemes:
+#  - https
+  - http
+
+paths:
+  /validate_sn:
+    get:
+      summary: summary
+      description: description
+      produces:
+      - "application/json"
+      - "application/xml"
+      consumes:
+        - application/json
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: query
+          name: serial_number
+          type: string
+          default: "LE3277740"
+#          example: "LE3277740"
+#          name: validateSNObject
+#          description: desc
+#          schema:
+#            $ref: '#/definitions/snValidationObject'
+
+      responses:
+        '200':
+          description: Pet updated.
+          schema:
+            $ref: "#/definitions/coltResponse"
+        '405':
+          description: Invalid input
+definitions:
+  coltResponse:
+    type: object
+    properties:
+      isError:
+        type: "boolean"
+        default: false
+      message:
+        type: "string"
+        example: "colt"
+        
+  snValidationObject:
+    type: object
+    required:
+      - Serial
+      - LaserTemplate
+      - User
+      - CameraAddress
+    properties:
+      Serial:
+        type: "string"
+        example: "LE377740"
+      LaserTemplate:
+        type: "string"
+        example: "colt"
+      User:
+        type: "string"
+        example: "colt\rtcousens"
+      CameraAddress:
+        type: "string"
+        example: "192.168.150.51"
